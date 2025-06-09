@@ -2,6 +2,7 @@
   "files.associations": {
     "*.cpp": "cpp",
     "dense": "cpp",
-    "core": "cpp"
+    "core": "cpp",
+    "iterator": "cpp"
   }
 }
