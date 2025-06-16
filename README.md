@@ -5,14 +5,20 @@ Cài đặt:
 Nếu sử dụng ros
 `cd ros2_ws/src`
 `git clone git@github.com:TranHa-robotics/Simple-ICP-2D.git`
+
 `cd ..`
+
 `colcon build --packages-select icp_2d`
+
 `source install/setup.bash`
+
 `ros2 run icp_2d main`
 
 Compile không cần ros: 
 `cd icp_2d/src/`
+
 `g++ src/main.cpp -I/usr/include/eigen3 -o icp -std=c++17`
+
 `./icp`
 
 Kết quả
