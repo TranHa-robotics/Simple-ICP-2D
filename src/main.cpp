@@ -64,10 +64,30 @@ void findTransformation(std::vector<Vector2d> &source, std::vector<Vector2d> &ta
   t = target_cen - R * source_cen;
 }
 
+// Hiển thị 2 tập điểm
+// void plotPoints(const std::vector<Vector2d>& source, const std::vector<Vector2d>& target) {
+//     std::vector<double> xs, ys, xt, yt;
+//     for (auto& p : source) {
+//         xs.push_back(p.x());
+//         ys.push_back(p.y());
+//     }
+//     for (auto& p : target) {
+//         xt.push_back(p.x());
+//         yt.push_back(p.y());
+//     }
+//     plt::clf();
+//     plt::scatter(xs, ys, 30.0, {{"color", "blue"}});
+//     plt::scatter(xt, yt, 30.0, {{"color", "red"}});
+//     plt::pause(0.5);
+// }
+
 int main() {
   // tao diem ban dau 
   std::vector<Vector2d> origin = {{1.0, 0.0}, {3.0,3.0}, {0.0,1.0}, {0.0,0.0}};
-
+  std::cout << "Diem ban dau: " << std::endl;
+  for(auto p: origin){
+    std::cout << std::fixed << std::setprecision(4) << p[0] << " " << p[1] << std::endl;  
+  }
   // tao diem sau khi da xoay
   std::vector<Vector2d> transformed = origin;
 
@@ -77,15 +97,31 @@ int main() {
 
   applyTransformation(R_init, t_init, transformed);
 
+  // plt::ion();
+  // plotPoints(transformed, origin);
+  std::cout << "\nSau khi transform: " << std::endl;
+  for(auto p: transformed){
+    std::cout << std::fixed << std::setprecision(4) << p[0] << " " << p[1] << std::endl;  
+  }
 
-  for(int i = 0; i<100; i++) {
+  std::vector<double> x, y;
+  for (const auto& p : origin) {
+      x.push_back(p.x());
+      y.push_back(p.y());
+  }
+  // plt::figure();
+  // plt::plot(x, y, "b-");
+
+  for(int i = 0; i<50; i++) {
     std::vector<int> indices;
     findNearestNeighbors(transformed, origin, indices);
     Matrix2d R;
     Vector2d t;
     findTransformation(transformed, origin, indices, R, t);
     applyTransformation(R,t, transformed);
+    // plotPoints(transformed, origin);
   }
+  std::cout << "\nSau khi ap dung transform tinh duoc tu ICP: " << std::endl;
   for(auto p: transformed){
     std::cout << std::fixed << std::setprecision(4) << p[0] << " " << p[1] << std::endl;  
   }
