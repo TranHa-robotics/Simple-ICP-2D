@@ -15,5 +15,6 @@ Compile không cần ros:
 `g++ src/main.cpp -I/usr/include/eigen3 -o icp -std=c++17`
 `./icp`
 
-Kết quảquả
+Kết quả
+
 ![image](https://github.com/user-attachments/assets/4b0288de-e483-47e4-ba61-1aeef1806441)
